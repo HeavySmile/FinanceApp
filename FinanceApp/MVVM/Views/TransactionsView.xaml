@@ -16,20 +16,22 @@
             <VerticalStackLayout Spacing="10" StyleClass="Padding25">
                 <Label Text="Transaction Name"/>
                 <Frame StyleClass="FrameBorder">
-                    <local:BorderlessEntry Text="Spotify Subscription"/>
+                    <local:BorderlessEntry Text="{Binding Transaction.Name}"/>
                 </Frame>
                 <Label StyleClass="MarginT15" Text="Amount"/>
                 <Frame StyleClass="FrameBorder">
-                    <local:BorderlessEntry Text="$49.00" VerticalOptions="Center" Keyboard="Numeric"/>
+                    <local:BorderlessEntry Text="{Binding Transaction.Amount}" VerticalOptions="Center" Keyboard="Numeric"/>
                 </Frame>
                 <Label StyleClass="MarginT15" Text="Transaction Date"/>
                 <Frame StyleClass="FrameBorder">
-                    <local:BorderlessDatePicker Format="dd/MM/yyyy"/>
+                    <local:BorderlessDatePicker Format="dd/MM/yyyy" Date="{Binding Transaction.Date}"/>
                 </Frame>
                 <HorizontalStackLayout>
-                    <CheckBox VerticalOptions="Center" IsChecked="True"/>
+                    <CheckBox VerticalOptions="Center" IsChecked="{Binding Transaction.IsIncome}"/>
                     <Label VerticalOptions="Center" Text="Is Income?"/>
                 </HorizontalStackLayout>
+                <Button StyleClass="MarginT15" Text="Save" x:Name="Save" Clicked="Save_Clicked"/>
+                <Button StyleClass="MarginT15, RedControl" Text="Cancel" x:Name="Cancel" Clicked="Cancel_Clicked"/>
             </VerticalStackLayout>
         </Grid>
     </Grid>

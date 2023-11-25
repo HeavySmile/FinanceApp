@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using FinanceApp.MVVM.Models;
+using FinanceApp.Repositories;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace FinanceApp
@@ -22,6 +24,7 @@ namespace FinanceApp
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<BaseRepository<Transaction>>();
 
             return builder.Build();
         }
