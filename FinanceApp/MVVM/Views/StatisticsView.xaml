@@ -3,7 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FinanceApp.MVVM.Views.StatisticsView"
              xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:converters="clr-namespace:FinanceApp.Converters"
              Title="StatisticsView">
+    <ContentPage.Resources>
+        <converters:AmountToCurrencyConverter x:Key="AmountConverter"/>
+        <converters:AmountToColorConverter x:Key="ColorConverter"/>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions=".15*, .10*, .35*, .40*">
         <RoundRectangle Grid.RowSpan="2" StyleClass="TopRectangle"/>
         <VerticalStackLayout StyleClass="Header">
@@ -43,8 +49,14 @@
                     <DataTemplate>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
                             <Label StyleClass="StrongMediumTitle" Text="{Binding Name}"/>
-                            <Label Grid.Row="1" StyleClass="SmallFont" Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}"/>
-                            <Label Grid.RowSpan="2" Grid.Column="1" StyleClass="ListAmount" Text="{Binding Amount, StringFormat='{0:C}'}"/>
+                            <Label Grid.Row="1" StyleClass="SmallFont" Text="{Binding HumanDate}"/>
+                            <Label x:Name="lableIsIncome" IsVisible="False" Text="{Binding IsIncome}"/>
+                            <Label 
+                                    Grid.RowSpan="2" 
+                                    Grid.Column="1" 
+                                    StyleClass="ListAmount" 
+                                    Text="{Binding Amount, Converter={StaticResource AmountConverter}, ConverterParameter={x:Reference lableIsIncome}}"
+                                    TextColor="{Binding Amount, Converter={StaticResource ColorConverter}, ConverterParameter={x:Reference lableIsIncome}}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
