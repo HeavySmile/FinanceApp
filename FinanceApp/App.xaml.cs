@@ -1,14 +1,18 @@
-﻿using FinanceApp.MVVM.Views;
+﻿using FinanceApp.MVVM.Models;
+using FinanceApp.MVVM.Views;
+using FinanceApp.Repositories;
 
 namespace FinanceApp
 {
     public partial class App : Application
     {
-        public App()
+        public static BaseRepository<Transaction> TransactionsRepo { get; private set; }
+        public App(BaseRepository<Transaction> _transactionRepo)
         {
             InitializeComponent();
 
-            MainPage = new TransactionsView();
+            TransactionsRepo = _transactionRepo;
+            MainPage = new AppContainer();
 
             Microsoft.Maui.Handlers.EntryHandler.Mapper.AppendToMapping(nameof(BorderlessEntry), (handler, view) =>
             {
@@ -26,7 +30,7 @@ namespace FinanceApp
                 handler.PlatformView.SetBackgroundColor(Android.Graphics.Color.Transparent);
 #elif __IOS__
                     handler.PlatformView.BackgroundColor = UIKit.UIColor.Clear;
-                    handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
+                    //handler.PlatformView.BorderStyle = UIKit.UITextBorderStyle.None;
 #endif
             });
         }
