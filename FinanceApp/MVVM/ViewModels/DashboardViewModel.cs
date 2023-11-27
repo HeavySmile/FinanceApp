@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FinanceApp.MVVM.Models;
+using PropertyChanged;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.MVVM.ViewModels
 {
-    public partial class DashboardViewModel : ObservableObject
+    [AddINotifyPropertyChangedInterface]
+    public class DashboardViewModel
     {
         public ObservableCollection<Transaction> Transactions { get; set; }
         public decimal Balance { get; set; }
@@ -21,7 +23,7 @@ namespace FinanceApp.MVVM.ViewModels
             FillData();
         }
 
-        private void FillData()
+        public void FillData()
         {
             var transactions = App.TransactionsRepo.GetItems();
             transactions = transactions.OrderByDescending(x => x.Date).ToList();
