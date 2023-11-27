@@ -9,7 +9,10 @@ namespace FinanceApp.MVVM.ViewModels
 {
     public class TransactionsViewModel
     {
-        public Transaction Transaction { get; set; } = new Transaction();
+        public Transaction Transaction { get; set; } = new Transaction()
+        {
+            Date = DateTime.Now
+        };
         
         public string SaveTransaction()
         {
