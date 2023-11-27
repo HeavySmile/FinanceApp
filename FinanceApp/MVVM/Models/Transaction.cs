@@ -1,4 +1,6 @@
-﻿using FinanceApp.Abstractions;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FinanceApp.Abstractions;
+using Humanizer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.MVVM.Models
 {
-    public class Transaction : TableData
+    [ObservableObject]
+    public partial class Transaction : TableData
     {
         public Transaction()
         {
@@ -17,5 +20,9 @@ namespace FinanceApp.MVVM.Models
         public decimal Amount { get; set; }
         public bool IsIncome { get; set; }
         public DateTime Date { get; set; }
+        public string HumanDate 
+        {
+            get => Date.Humanize();
+        }
     }
 }
