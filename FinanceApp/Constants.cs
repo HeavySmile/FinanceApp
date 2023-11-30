@@ -9,7 +9,7 @@ namespace FinanceApp
 {
     public static class Constants
     {
-        private const string DBFileName = "ProsperDaily.db3";
+        private const string DBFileName = "FinanceApp.db3";
 
         public const SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache;
 

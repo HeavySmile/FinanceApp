@@ -9,7 +9,7 @@
             <views:DashboardView/>
         </x:Arguments>
     </NavigationPage>
-
+    
     <views:StatisticsView Title="Statistics"/>
 
 </TabbedPage>
